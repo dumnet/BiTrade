@@ -1,0 +1,23 @@
+<?php
+            include_once 'Db.php';
+
+            $query= "SELECT * FROM account ORDER BY id=1";
+            $result = $conn->query($query);
+            foreach ($result as $key => $value) {
+              $btc = $value['btc'];
+              $euro_start = $value['btc_euro'];
+              }
+
+            $query= "SELECT * FROM flux ORDER BY id DESC LIMIT 1";
+            $result = $conn->query($query);
+            foreach ($result as $key => $value) {
+              $spot = $value['spot'];
+              $My_Btc_to_Euro = $value['My_Btc_to_Euro'];
+              $jump_spot = $value['jump_spot'];
+              }
+              echo "$spot";
+              
+              //
+
+?>
+
