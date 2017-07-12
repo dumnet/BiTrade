@@ -496,7 +496,7 @@ function Flux($spot, $last_spot, $spot_color, $jump_spot, $My_Btc_to_Euro, $date
                     if ($update == true) {
                         $spot_color = $Light_Red;
                     }else{
-                        $spot_color = $red;
+                        $spot_color = $Red;
                     }
                     if ($jump_spot < -15) {
                         $object = "Alert: Spot Market $jump_spot€ Continue a Jumping!";
