@@ -451,6 +451,8 @@ function Flux($spot, $last_spot, $spot_color, $jump_spot, $My_Btc_to_Euro, $date
         $Red = "\33[0;31m";
         $Yellow = "\33[1;33m";
         $White = "\33[1;37m";
+        $Light_Green = "\33[1;32m";
+        $Light_Red = "\33[1;31m";
 
 
         echo "\n  [F] Flux \n";
@@ -461,11 +463,15 @@ function Flux($spot, $last_spot, $spot_color, $jump_spot, $My_Btc_to_Euro, $date
             $result = $conn->query($query);
              if ($result === TRUE) {      
                 echo "\n    [F] (Update DataBase) \n";
+                $update = true; 
             } else {
                 echo "Error update flux record: \n" . $conn->error;
                 die;
             }
+        }else{
+            $update = false;
         }
+
         
         
         // Sendmail if Jump of Ratio +/- 15 €
@@ -476,14 +482,22 @@ function Flux($spot, $last_spot, $spot_color, $jump_spot, $My_Btc_to_Euro, $date
                         [F:Date] ".$date."\n";
                 //  Spot Color
                 if ($jump_spot > 0) {
-                    $spot_color = $Green;
+                    if ($update == true) {
+                        $spot_color = $Light_Green;
+                    }else{
+                        $spot_color = $Green;
+                    }
                     if ($jump_spot > 15) {
                         $object = "Alert: Jump Spot Market jump_spot€ Continue a Jumping !";
                         $this->AlertMail( $object, $message);
                         echo "SendMail for Alert ! \n";
                     }
                 }elseif($jump_spot < 0) {
-                    $spot_color = $Red;
+                    if ($update == true) {
+                        $spot_color = $Light_Red;
+                    }else{
+                        $spot_color = $red;
+                    }
                     if ($jump_spot < -15) {
                         $object = "Alert: Spot Market $jump_spot€ Continue a Jumping!";
                         $this->AlertMail( $object, $message);
