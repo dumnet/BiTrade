@@ -24,10 +24,10 @@ git clone https://github.com/Mediashare/BiTrade
 cd BiTrade/
 composer install
 ```
-Import Db sql (Db_BiTrade)[web/Db_BiTrade]
-
+Import Db sql [Db_BiTrade](web/Db_BiTrade)
+```
 Rename example.config.inc to config.inc.php
-
+```
 Insert your data in config.inc.php & web/Db.php
 ```
 // The currency you're going to pay with when buying new coins
